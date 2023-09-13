@@ -1,0 +1,23 @@
+version: "1"
+volumes:
+    postgresql-agr: {}
+services:
+    postgresql-agr:
+        image: postgres:14.3
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: agr-sol
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+
+        volumes:
+            - postgresql-agr:/var/lib/postgresql/data:rw
+        ports:
+            - 3333:5432
+        healthcheck:
+            test: psql -w -U postgres -d agr-sol -c "SELECT 1"
+            start_period: 300s
+            interval: 5s
+            timeout: 5s
+            retries: 3
+

@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "8c6e0e52-6e79-49b2-8bc6-0cc7f0490899",
+		"name": "Agr-sol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13858558"
+	},
+	"item": [
+		{
+			"name": "Energy park",
+			"item": [
+				{
+					"name": "Create new energy park",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Response status code', function () {",
+									"    pm.response.to.have.status(201);",
+									"})",
+									"",
+									"pm.test(\"Response body\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response).to.be.an('object').that.has.property('id').and.to.not.be.empty;",
+									"    pm.expect(response).to.be.an('object').that.has.property('key').and.eql(\"WD12\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('type').and.eql(\"WIND\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('name').and.eql(\"Wind park 12\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('description').and.eql(\"A description\");",
+									"});",
+									"",
+									"pm.collectionVariables.set(\"energyParkId\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\" : \"WD12\",\n    \"type\": \"WIND\",\n    \"name\": \"Wind park 12\",\n    \"description\": \"A description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/energy-parks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"energy-parks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new energy park 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response body\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response).to.be.an('object').that.has.property('id').and.to.not.be.empty;",
+									"    pm.expect(response).to.be.an('object').that.has.property('key').and.to.be(\"WD112\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('type').and.to.be(\"WIND\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('name').and.to.be(\"Wind park 122\");",
+									"    pm.expect(response).to.be.an('object').that.has.property('description').and.to.be(\"A description\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\" : \"WD112\",\n    \"type\": \"WIND\",\n    \"name\": \"Wind park 122\",\n    \"description\": \"A description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/energy-parks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"energy-parks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create energy park error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\" : \"WD112\",\n    \"type\": \"WIND\",\n    \"name\": \"Wind park 122\",\n    \"description\": \"A description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/energy-parks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"energy-parks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get energy parks wind",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/energy-parks/type/wind",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"energy-parks",
+								"type",
+								"wind"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offer",
+			"item": [
+				{
+					"name": "Create new energy park Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"market\" : \"PRIMARY\",\n    \"energy\": 1.2,\n    \"price\": 12222.2,\n    \"blockDate\": \"16/08/2023\",\n    \"blockNumber\": 1,\n    \"energyParkId\": \"{{energyParkId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new energy park 2 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"market\" : \"SECONDARY\",\n    \"energy\": 1.2,\n    \"price\": 12222.2,\n    \"blockDate\": \"16/08/2023\",\n    \"blockNumber\": 1,\n    \"energyParkId\": \"{{energyParkId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9999/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get offers primary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9999/offers/market/primary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9999",
+							"path": [
+								"offers",
+								"market",
+								"primary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "energyParkId",
+			"value": ""
+		}
+	]
+}
